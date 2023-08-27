@@ -1,10 +1,15 @@
-import { UserButton } from "@clerk/nextjs";
+"use client";
+import { useStoreModal } from "@/hooks/use-store-modal";
+import { useEffect } from "react";
 
-export default function Home() {
-  return (
-    <div className="flex justify-between px-16 py-2 bg-slate-900 text-white">
-      <h2>Ecommerce Admin</h2>
-      <UserButton afterSignOutUrl="/" />
-    </div>
-  );
+export default function SetupPage() {
+  const isOpen = useStoreModal((state) => state.isOpen);
+  const onOpen = useStoreModal((state) => state.onOpen);
+
+  useEffect(() => {
+    if (!isOpen) {
+      onOpen();
+    }
+  }, [isOpen, onOpen]);
+  return <div className="p-4">Root Page</div>;
 }
