@@ -23,10 +23,10 @@ export default function MainNav({
           key={route.href}
           href={route.href}
           className={cn(
-            "font-medium text-sm transition-colors hover:text-primary",
+            "font-medium text-sm transition-colors",
             route.active
               ? "text-black dark:text-white"
-              : "text-muted-foreground"
+              : "text-gray-500 hover:text-black dark:hover:text-white"
           )}
         >
           {route.label}
