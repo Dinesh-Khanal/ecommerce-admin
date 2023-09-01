@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import SettingForm from "@/components/setting-form";
 
 export default async function SettingPage({
   params,
@@ -18,5 +19,5 @@ export default async function SettingPage({
   if (!store) {
     redirect("/");
   }
-  return <div>SettingPage of {store.name}</div>;
+  return <SettingForm store={store} />;
 }
