@@ -23,9 +23,11 @@ import { Separator } from "@/components/ui/separator";
 import { Heading } from "@/components/ui/heading";
 import { AlertModal } from "@/components/modals/alert-modal";
 import { ApiAlert } from "@/components/ui/api-alert";
+import ImageUpload from "./image-upload";
 
 const formSchema = z.object({
   label: z.string().min(2),
+  imageUrl: z.string().min(1),
 });
 
 type BillboardValues = z.infer<typeof formSchema>;
@@ -52,7 +54,7 @@ const BillboardForm: React.FC<BillboardProps> = ({ initialData }) => {
       setLoading(true);
       await axios.patch(`/api/stores/${params.storeId}`, data);
       router.refresh();
-      toast.success("Store updated.");
+      toast.success(toastMessage);
     } catch (error: any) {
       toast.error("Something went wrong.");
     } finally {
@@ -99,15 +101,16 @@ const BillboardForm: React.FC<BillboardProps> = ({ initialData }) => {
           <div className="grid grid-cols-3 gap-8">
             <FormField
               control={form.control}
-              name="label"
+              name="imageUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Background image</FormLabel>
                   <FormControl>
-                    <Input
+                    <ImageUpload
+                      value={field.value ? [field.value] : []}
                       disabled={loading}
-                      placeholder="Store name"
-                      {...field}
+                      onChange={(url) => field.onChange(url)}
+                      onRemove={() => field.onChange("")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -115,6 +118,24 @@ const BillboardForm: React.FC<BillboardProps> = ({ initialData }) => {
               )}
             />
           </div>
+          <FormField
+            control={form.control}
+            name="label"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={loading}
+                    placeholder="Billboard label"
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <Button disabled={loading} className="ml-auto" type="submit">
             {action}
           </Button>
