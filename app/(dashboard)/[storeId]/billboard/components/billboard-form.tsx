@@ -22,7 +22,6 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Heading } from "@/components/ui/heading";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { ApiAlert } from "@/components/ui/api-alert";
 import ImageUpload from "./image-upload";
 
 const formSchema = z.object({
@@ -62,6 +61,7 @@ const BillboardForm: React.FC<BillboardProps> = ({ initialData }) => {
       }
 
       router.refresh();
+      router.push(`/${params.storeId}/billboard`);
       toast.success(toastMessage);
     } catch (error: any) {
       toast.error("Something went wrong.");
