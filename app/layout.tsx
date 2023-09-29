@@ -5,7 +5,6 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 import { ModalProvider } from "@/provider/modal-provider";
 import ToasterProvider from "@/provider/toaster-provider";
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ClerkProvider>
-        <body className={inter.className}>
+        <body>
           <ToasterProvider />
           {children}
           <ModalProvider />

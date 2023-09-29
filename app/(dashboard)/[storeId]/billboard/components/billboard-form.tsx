@@ -54,11 +54,11 @@ const BillboardForm: React.FC<BillboardProps> = ({ initialData }) => {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `/api/${params.storeId}/billboard/${params.billboardId}`,
+          `/api/stores/${params.storeId}/billboard/${params.billboardId}`,
           data
         );
       } else {
-        await axios.post(`/api/${params.storeId}/billboard`, data);
+        await axios.post(`/api/stores/${params.storeId}/billboard`, data);
       }
 
       router.refresh();
