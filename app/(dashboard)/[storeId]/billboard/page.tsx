@@ -1,5 +1,5 @@
 import React from "react";
-import BillboardClient from "./billboard-client.tsx/page";
+import BillboardClient from "./billboard-client/page";
 import prisma from "@/lib/prisma";
 
 export default async function BillboardPage({
