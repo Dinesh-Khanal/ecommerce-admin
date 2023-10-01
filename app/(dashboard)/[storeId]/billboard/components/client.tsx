@@ -4,11 +4,11 @@ import { Plus } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Heading } from "@/components/ui/heading";
 import { useParams, useRouter } from "next/navigation";
-import { Billboard } from "@prisma/client";
 import { DataTable } from "@/components/ui/data-table";
 import { columns } from "./columns";
+import { BillboardColumn } from "./columns";
 
-export default function BillboardClient({ data }: { data: Billboard[] }) {
+export default function BillboardClient({ data }: { data: BillboardColumn[] }) {
   const { storeId } = useParams();
   const router = useRouter();
   return (

@@ -1,14 +1,15 @@
 "use client";
 import { ColumnDef } from "@tanstack/react-table";
-import { Billboard } from "@prisma/client";
-export const columns: ColumnDef<Billboard>[] = [
+
+export interface BillboardColumn {
+  id: string;
+  label: string;
+  createdAt: string;
+}
+export const columns: ColumnDef<BillboardColumn>[] = [
   {
     header: "Label",
     accessorKey: "label",
-  },
-  {
-    header: "Image",
-    accessorKey: "imageUrl",
   },
   {
     header: "Created Date",
