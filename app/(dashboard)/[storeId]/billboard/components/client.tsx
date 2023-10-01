@@ -5,6 +5,8 @@ import { Separator } from "@/components/ui/separator";
 import { Heading } from "@/components/ui/heading";
 import { useParams, useRouter } from "next/navigation";
 import { Billboard } from "@prisma/client";
+import { DataTable } from "@/components/ui/data-table";
+import { columns } from "./columns";
 
 export default function BillboardClient({ data }: { data: Billboard[] }) {
   const { storeId } = useParams();
@@ -22,6 +24,7 @@ export default function BillboardClient({ data }: { data: Billboard[] }) {
         </Button>
       </div>
       <Separator />
+      <DataTable columns={columns} data={data} />
     </>
   );
 }
