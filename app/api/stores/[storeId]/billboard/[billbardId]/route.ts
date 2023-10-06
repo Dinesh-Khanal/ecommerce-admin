@@ -31,3 +31,34 @@ export async function PATCH(
     return new NextResponse("Internal server error", { status: 500 });
   }
 }
+
+export async function DELETE(
+  req: Request,
+  { params }: { params: { billbardId: string; storeId: string } }
+) {
+  try {
+    const storeId = params.storeId;
+    const id = params.billbardId;
+    const { userId } = auth();
+    if (!userId) {
+      return new NextResponse("Unauthenticated", { status: 403 });
+    }
+    const storeByUserId = await prisma.store.findFirst({
+      where: {
+        id: storeId,
+        userId,
+      },
+    });
+
+    if (!storeByUserId) {
+      return new NextResponse("Unauthorized", { status: 405 });
+    }
+    const billboard = await prisma.billboard.delete({
+      where: { id },
+    });
+    return NextResponse.json(billboard);
+  } catch (error) {
+    console.log("[BILLBOARD_DELETE] ", error);
+    return new NextResponse("Internal server error", { status: 500 });
+  }
+}

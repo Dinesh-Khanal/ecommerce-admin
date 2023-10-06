@@ -22,7 +22,7 @@ export default function CellActions({ data }: { data: BillboardColumn }) {
   const onDelete = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.storeId}/billboard/${data.id}`);
+      await axios.delete(`/api/stores/${params.storeId}/billboard/${data.id}`);
       router.refresh();
       toast.success("Billboard deleted.");
     } catch (error: any) {
