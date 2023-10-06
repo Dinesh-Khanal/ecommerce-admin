@@ -74,7 +74,7 @@ const BillboardForm: React.FC<BillboardProps> = ({ initialData }) => {
     try {
       setLoading(true);
       await axios.delete(
-        `/api/${params.storeId}/billboard/${params.billboardId}`
+        `/api/stores/${params.storeId}/billboard/${params.billboardId}`
       );
       router.refresh();
       router.push("/");
