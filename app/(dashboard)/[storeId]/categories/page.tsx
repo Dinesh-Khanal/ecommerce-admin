@@ -2,6 +2,7 @@ import React from "react";
 import CategoryClient from "./components/client";
 import prisma from "@/lib/prisma";
 import { format } from "date-fns";
+import { CategoryColumn } from "./components/columns";
 
 export default async function CategoryPage({
   params,
@@ -19,7 +20,7 @@ export default async function CategoryPage({
       createdAt: "desc",
     },
   });
-  const formattedCategory = categories.map((item) => ({
+  const formattedCategory: CategoryColumn[] = categories.map((item) => ({
     id: item.id,
     name: item.name,
     billboardLabel: item.billboard.label,

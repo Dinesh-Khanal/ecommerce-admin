@@ -18,13 +18,13 @@ export default function CategoryClient({ data }: { data: CategoryColumn[] }) {
           title={`Category(${data.length})`}
           description="manage category for your store"
         />
-        <Button onClick={() => router.push(`/${storeId}/category/new`)}>
+        <Button onClick={() => router.push(`/${storeId}/categories/new`)}>
           <Plus className="mr-4 w-4 h-4" />
           Add new
         </Button>
       </div>
       <Separator />
-      <DataTable columns={columns} data={data} searchKey="label" />
+      <DataTable columns={columns} data={data} searchKey="name" />
     </>
   );
 }
